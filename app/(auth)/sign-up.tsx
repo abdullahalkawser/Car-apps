@@ -9,6 +9,7 @@ import { useSignUp } from "@clerk/clerk-expo";
 import InputField from "@/componants/InputFiled";
 import CustomButton from "@/componants/CustomBtn";
 import OAuth from "@/componants/Oath";
+import { fetchAPI } from "@/lib/fetch";
 
 const SignUpScreen = () => {
   const [form, setForm] = useState({
@@ -61,6 +62,14 @@ const SignUpScreen = () => {
       });
 
       if (completeSignUp.status === "complete") {
+        await fetchAPI("/(api)/user", {
+          method: "POST",
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            clerkId: completeSignUp.createdUserId,
+          }),
+        });
         await setActive({ session: completeSignUp.createdSessionId });
         setVerification({
           ...verification,
