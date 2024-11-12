@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Platform,
+  StyleSheet,
 } from "react-native";
 
 import { InputFieldProps } from "@/types/type";
@@ -25,20 +26,18 @@ const InputField = ({
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="my-2 w-full">
+        <View style={styles.wrapper}>
           {/* Label */}
           {label && (
-            <Text className={`text-lg font-medium mb-2 ${labelStyle}`}>
-              {label}
-            </Text>
+            <Text style={[styles.label, labelStyle]}>{label}</Text>
           )}
           {/* Input Container */}
-          <View className={`flex flex-row items-center bg-neutral-100 rounded-full border border-neutral-100 px-3 ${containerStyle}`}>
+          <View style={[styles.inputContainer, containerStyle]}>
             {icon && (
-              <Image source={icon} className={`w-4 h-6 mr-2 ${iconStyle}`} />
+              <Image source={icon} style={[styles.icon, iconStyle]} />
             )}
             <TextInput
-              className={`flex-1 py-3 px-2 text-base font-bold ${inputStyle}`}
+              style={[styles.input, inputStyle]}
               secureTextEntry={secureTextEntry}
               {...props}
             />
@@ -50,3 +49,36 @@ const InputField = ({
 };
 
 export default InputField;
+
+const styles = StyleSheet.create({
+  wrapper: {
+    marginVertical: 8,
+    width: "100%",
+  },
+  label: {
+    fontSize: 18,
+    fontWeight: "500",
+    marginBottom: 8,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f5f5f5", // Equivalent to `bg-neutral-100`
+    borderRadius: 50, // Equivalent to `rounded-full`
+    borderWidth: 1,
+    borderColor: "#f5f5f5",
+    paddingHorizontal: 12,
+  },
+  icon: {
+    width: 16, // Equivalent to `w-4`
+    height: 24, // Equivalent to `h-6`
+    marginRight: 8, // Equivalent to `mr-2`
+  },
+  input: {
+    flex: 1,
+    paddingVertical: 12, // Equivalent to `py-3`
+    paddingHorizontal: 8, // Equivalent to `px-2`
+    fontSize: 16, // Equivalent to `text-base`
+    fontWeight: "bold",
+  },
+});
