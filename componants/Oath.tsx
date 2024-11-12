@@ -9,7 +9,7 @@ const OAuth = () => {
       <View className="flex-row items-center justify-center mt-4">
         <View className="flex-1 h-[1px] bg-gray-200" />
         <Text className="text-lg mx-2">Or</Text>
-        <View className="flex-1 h-[10px] bg-black" />
+        <View className="flex-1 h-[1px] bg-gray-200" />
       </View>
 
       <CustomButton

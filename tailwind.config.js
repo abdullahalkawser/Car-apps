@@ -5,7 +5,7 @@ module.exports = {
   content: [
     "./app/**/*.{js,jsx,ts,tsx}",  
     "./src/**/*.{js,jsx,ts,tsx}",                    // Main App component
-    "./components/**/*.{js,jsx,ts,tsx}", // Include all files in components folder
+    "./componants/**/*.{js,jsx,ts,tsx}", // Include all files in components folder
   ],
   
   presets: [require("nativewind/preset")],
